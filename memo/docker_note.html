@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>Jupyter_tips</title>
+<title>docker_note</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -12948,28 +12948,28 @@ ul.typeahead-list  > li > a.pull-right {
     </style>
 <style type="text/css">
     pre { line-height: 125%; }
-td.linenos pre { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
-span.linenos { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
-td.linenos pre.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 .highlight .hll { background-color: #ffffcc }
 .highlight { background: #f8f8f8; }
-.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
 .highlight .err { border: 1px solid #FF0000 } /* Error */
 .highlight .k { color: #008000; font-weight: bold } /* Keyword */
 .highlight .o { color: #666666 } /* Operator */
-.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
-.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
-.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
-.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
-.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
-.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
 .highlight .gd { color: #A00000 } /* Generic.Deleted */
 .highlight .ge { font-style: italic } /* Generic.Emph */
-.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gr { color: #E40000 } /* Generic.Error */
 .highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
-.highlight .gi { color: #00A000 } /* Generic.Inserted */
-.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
 .highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
 .highlight .gs { font-weight: bold } /* Generic.Strong */
 .highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
@@ -12982,15 +12982,15 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .kt { color: #B00040 } /* Keyword.Type */
 .highlight .m { color: #666666 } /* Literal.Number */
 .highlight .s { color: #BA2121 } /* Literal.String */
-.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .na { color: #687822 } /* Name.Attribute */
 .highlight .nb { color: #008000 } /* Name.Builtin */
 .highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
 .highlight .no { color: #880000 } /* Name.Constant */
 .highlight .nd { color: #AA22FF } /* Name.Decorator */
-.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
-.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
 .highlight .nf { color: #0000FF } /* Name.Function */
-.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nl { color: #767600 } /* Name.Label */
 .highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
 .highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
 .highlight .nv { color: #19177C } /* Name.Variable */
@@ -13007,11 +13007,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
-.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
 .highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
-.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
 .highlight .sx { color: #008000 } /* Literal.String.Other */
-.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
@@ -13021,95 +13021,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
-    </style>
-<style type="text/css">
-    .CodeMirror pre{
-/*	font-family: Menlo, monospace !important;  */
-}
-
-.container {
-    width: 95% !important;
-	background: #cccccc !important;
-}
-
-.notebook_app {
-    background: #cccccc !important;
-}
-
-body > #header{
-    background:  #cccccc ; 
-}
-
-html, body, #container{
-	background-color: #cccccc !important;
-}
-
-
-#notebook-container{
-/*	margin: 10px;
-	padding: 0px;*/
-    box-shadow: none !important;
-}
-
-div.text_cell {
-    font-size: 120% !important;
-}
-
-
-div#notebook p, div#notebook{
-    line-height: 125%;
-}
-
-.rendered_html pre, .rendered_html table{
-    line-height: 125%;
-}
-
-.CodeMirror, .CodeMirror pre, .CodeMirror-dialog, .CodeMirror-dialog, .CodeMirror-search-field, .terminal-app .terminal {
-	font-size: 110%;
-    line-height: 120%;
-	background: #ffffff;
-}
-
-
-.jp-MarkdownOutput {
-	font-size: 120% !important;
-}
-
-/*div.prompt_container{ margin-left: -10pt; }*/
-
-/*
-#notebook-container {
-    padding: 5px;
-}
-*/
-
-.run_this_cell {
-    padding-left: 0px;
-    padding-right: 0px;
-}
-
-div.input_area > div.highlight > pre{
-	white-space: pre;
-}
-
-.CodeMirror-scroll{
-	height: fit-content;
-	margin-bottom: -50px;
-	overflow: hidden !important;
-}
-
-.CodeMirror-vscrollvar, .CodeMirror-hscrollbar{
-	display: none !important;
-}
-
-.rendered_html img {
-  display: block;
- /* float: left;*/
- margin-left:unset;
-  max-height:400px;
-}
-
-
     </style>
 
 
@@ -13171,187 +13082,14 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="To-write-text-and-output-as-a-text-file-by-bash-commands.">To write text and output as a text file by bash commands.<a class="anchor-link" href="#To-write-text-and-output-as-a-text-file-by-bash-commands.">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash
-<span class="nb">echo</span> -e <span class="s2">&quot;program main </span>
-<span class="s2">implicit none </span>
-<span class="s2">integer i, ig </span>
-
-<span class="s2">  write(*,*) &#39;hello&#39; </span>
-
-<span class="s2">end program main</span>
-<span class="s2">&quot;</span> &gt; output.f90
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="To-write-text-and-output-as-a-text-file-by-bash-commands.">To write text and output as a text file by bash commands.<a class="anchor-link" href="#To-write-text-and-output-as-a-text-file-by-bash-commands.">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;kaigyou.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
-
-<span class="nb">str</span><span class="o">=</span><span class="s1">&#39;plasma&#39;</span>
-
-<span class="c1"># Strings to be written in the text file. The word \n means to start a new line.</span>
-<span class="n">kaigyou_str</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\</span>
-<span class="si">%s</span><span class="se">\n\</span>
-<span class="s1">collisionless shocks</span><span class="se">\n\</span>
-<span class="s1">particle acceleration&#39;</span> <span class="o">%</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
- 
-<span class="c1"># write down on the text</span>
-<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">kaigyou_str</span><span class="p">)</span>
- 
-<span class="c1"># clear the data</span>
-<span class="n">f</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
- 
-<span class="c1"># close a connection with the text </span>
-<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="To-read-custom.css-for-RISE-presentation-in-Jupyter-notebook-by-a-full-path.">To read custom.css for RISE presentation in Jupyter notebook by a full path.<a class="anchor-link" href="#To-read-custom.css-for-RISE-presentation-in-Jupyter-notebook-by-a-full-path.">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%HTML</span>
-<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;http://localhost:8888/notebooks/OneDrive/Jupyter_notebook/RISE/RISE_custom.css&quot;</span><span class="p">&gt;</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="To-read-a-file-from-Jupyter-notebook-by-a-full-path.">To read a file from Jupyter notebook by a full path.<a class="anchor-link" href="#To-read-a-file-from-Jupyter-notebook-by-a-full-path.">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>notepad.exe <span class="s1">&#39;c:/Users/mnaka/OneDrive/Jupyter_notebook/RISE/RISE_custom.css&#39;</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="To-connect-with-a-server-by-port-forwarding.">To connect with a server by port forwarding.<a class="anchor-link" href="#To-connect-with-a-server-by-port-forwarding.">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>ssh -L <span class="m">8888</span>:127.0.0.1:8888 username@IPadress
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="To-output-a-Jupyter-notebook-as-html-based-slide.">To output a Jupyter notebook as html-based slide.<a class="anchor-link" href="#To-output-a-Jupyter-notebook-as-html-based-slide.">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash 
-<span class="c1">#output html-based slides</span>
-jupyter nbconvert --to slides *****.ipynb --SlidesExporter.reveal_theme<span class="o">=</span>black --SlidesExporter.reveal_scroll<span class="o">=</span>True --template<span class="o">=</span>/.../output_toggle.tpl --SlidesExporter.reveal_transition<span class="o">=</span>convex
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Equation-number-and-Reffering">Equation number and Reffering<a class="anchor-link" href="#Equation-number-and-Reffering">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Write as follows:</p>
-<div class="highlight"><pre><span></span><span class="sb">$$</span><span class="nb"></span>
-<span class="nv">\begin</span><span class="nb">{equation}</span>
-<span class="nb">g </span><span class="o">=</span><span class="nb"> a^b f</span><span class="o">(</span><span class="nb">x</span><span class="o">)</span><span class="nb">dx </span><span class="nv">\label</span><span class="nb">{eq:</span><span class="m">1</span><span class="nb">} </span><span class="nv">\tag</span><span class="nb">{</span><span class="m">1</span><span class="nb">}</span>
-<span class="nv">\end</span><span class="nb">{equation}</span>
-<span class="s">$$</span>
-</pre></div>
-<p>, and reffer as <code>\ref{eq:1}</code>.</p>
-$$
-\begin{equation}
-g = a^b f(x)dx \label{eq:1} \tag{1}
-\end{equation}
-$$<p>See (\ref{eq:1})!</p>
+<h1 id="Docker-note">Docker note<a class="anchor-link" href="#Docker-note">&#182;</a></h1><p><strong>Masaru Nakanotani</strong><br>
+<strong>CSPAR, UAH, Huntsville, AL 35805, USA</strong><br>
+<strong>Dec/02/2021</strong> (Date created)<br>
+<strong>May/05/2023</strong> (Last modified)</p>
+<hr>
+<p>In this post, I take a note how to use Docker.<br>
+You can install Docker for several OS (Linux, Windows, and Mac), and the installation document is here <a href="https://docs.docker.com/get-docker/">https://docs.docker.com/get-docker/</a>.<br>
+The following argument is valid for Linux, Windows with WSL, and Mac.</p>
 
 </div>
 </div>
@@ -13359,153 +13097,11 @@ $$<p>See (\ref{eq:1})!</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="How-to-create-PDF-with-a-template">How to create PDF with a template<a class="anchor-link" href="#How-to-create-PDF-with-a-template">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> temp.tplx
-<span class="p">((</span><span class="o">*-</span> <span class="n">extends</span> <span class="s1">&#39;article.tplx&#39;</span> <span class="o">-*</span><span class="p">))</span>
-
-<span class="p">((</span><span class="o">*</span> <span class="n">block</span> <span class="n">author</span> <span class="o">*</span><span class="p">))</span>
-\<span class="n">author</span><span class="p">{</span><span class="n">Cyrille</span> <span class="n">Rossant</span><span class="p">}</span>
-<span class="p">((</span><span class="o">*</span> <span class="n">endblock</span> <span class="n">author</span> <span class="o">*</span><span class="p">))</span>
-
-<span class="p">((</span><span class="o">*</span> <span class="n">block</span> <span class="n">title</span> <span class="o">*</span><span class="p">))</span>
-\<span class="n">title</span><span class="p">{</span><span class="n">My</span> <span class="n">document</span><span class="p">}</span>
-<span class="p">((</span><span class="o">*</span> <span class="n">endblock</span> <span class="n">title</span> <span class="o">*</span><span class="p">))</span>
-<span class="n">writing</span> <span class="n">temp</span><span class="o">.</span><span class="n">tplx</span>
+<p>Once you have completed installing, you can check the version in the terminal. If it does not work, you may need to run Docker Desktop (if you installed it).</p>
+<div class="highlight"><pre><span></span>user@pc:~$ docker --version
+Docker version <span class="m">20</span>.10.10, build b485636
+user@pc:~$
 </pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Writing temp.tplx
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>jupyter nbconvert  --no-input ***.ipynb --to pdf --template temp
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="custom.css">custom.css<a class="anchor-link" href="#custom.css">&#182;</a></h2>
-<pre><code>.CodeMirror pre{
-/*  font-family: Menlo, monospace !important;  */
-}
-
-.container {
-    width: 95% !important;
-    background: #cccccc !important;
-}
-
-.notebook_app {
-    background: #cccccc !important;
-}
-
-body &gt; #header{
-    background:  #cccccc ; 
-}
-
-html, body, #container{
-    background-color: #cccccc !important;
-}
-
-
-#notebook-container{
-/*  margin: 10px;
-    padding: 0px;*/
-    box-shadow: none !important;
-}
-
-div.text_cell {
-    font-size: 120% !important;
-}
-
-
-div#notebook p, div#notebook{
-    line-height: 125%;
-}
-
-.rendered_html pre, .rendered_html table{
-    line-height: 125%;
-}
-
-.CodeMirror, .CodeMirror pre, .CodeMirror-dialog, .CodeMirror-dialog, .CodeMirror-search-field, .terminal-app .terminal {
-    font-size: 110%;
-    line-height: 120%;
-    background: #ffffff;
-}
-
-
-.jp-MarkdownOutput {
-    font-size: 120% !important;
-}
-
-/*div.prompt_container{ margin-left: -10pt; }*/
-
-/*
-#notebook-container {
-    padding: 5px;
-}
-*/
-
-.run_this_cell {
-    padding-left: 0px;
-    padding-right: 0px;
-}
-
-div.input_area &gt; div.highlight &gt; pre{
-    white-space: pre;
-}
-
-.CodeMirror-scroll{
-    height: fit-content;
-    margin-bottom: -50px;
-    overflow: hidden !important;
-}
-
-.CodeMirror-vscrollvar, .CodeMirror-hscrollbar{
-    display: none !important;
-}
-
-.rendered_html img {
-  display: block;
- /* float: left;*/
- margin-left:unset;
-  max-height:400px;
-}</code></pre>
 
 </div>
 </div>
@@ -13513,153 +13109,181 @@ div.input_area &gt; div.highlight &gt; pre{
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="custom.js">custom.js<a class="anchor-link" href="#custom.js">&#182;</a></h2><p>this is based on the nbextension, cellfolding.</p>
-<div class="highlight"><pre><span></span><span class="nx">define</span><span class="p">([</span>
-    <span class="s1">&#39;base/js/namespace&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;base/js/events&#39;</span>
-    <span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Jupyter</span><span class="p">,</span> <span class="nx">events</span><span class="p">)</span> <span class="p">{</span>
-      <span class="s2">&quot;use strict&quot;</span><span class="p">;</span>
-      <span class="c1">//keybindings.bindSublimeKeymap();</span>
-    <span class="c1">//vim keybinding//</span>
-    <span class="c1">//vim.vimkey();</span>
+<p>Next you can check the hello-world test as follows,</p>
+<div class="highlight"><pre><span></span>user@pc:~$ docker run hello-world
 
-      <span class="kd">function</span> <span class="nx">on_click</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">code</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">parent</span><span class="p">().</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;.CodeMirror&quot;</span><span class="p">)[</span><span class="mf">0</span><span class="p">].</span><span class="nx">CodeMirror</span><span class="p">;</span>
-        <span class="kd">var</span> <span class="nx">$incell</span><span class="o">=</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">parent</span><span class="p">().</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;.inner_cell&quot;</span><span class="p">);</span>
-        <span class="kd">var</span> <span class="nx">curheight</span> <span class="o">=</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">parent</span><span class="p">().</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;.CodeMirror&quot;</span><span class="p">).</span><span class="nx">height</span><span class="p">();</span>
-        <span class="kd">var</span> <span class="nx">slideheight</span><span class="o">=</span><span class="mf">28</span><span class="p">;</span>
-    <span class="c1">//  window.alert(code.options.fold);</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">code</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">fold</span> <span class="o">&amp;&amp;</span> <span class="nx">curheight</span><span class="o">&gt;</span><span class="mf">31</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">code</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">fold</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span>
-            <span class="nx">code</span><span class="p">.</span><span class="nx">setSize</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">slideheight</span><span class="p">);</span>
-            <span class="nx">$incell</span><span class="p">.</span><span class="nx">css</span><span class="p">({</span><span class="s1">&#39;border-bottom&#39;</span> <span class="o">:</span> <span class="s1">&#39;2px dashed&#39;</span><span class="p">});</span> 
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="nx">code</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">fold</span><span class="o">=</span><span class="kc">false</span><span class="p">;</span>
-            <span class="nx">code</span><span class="p">.</span><span class="nx">setSize</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="s1">&#39;auto&#39;</span><span class="p">);</span>
-          <span class="nx">$incell</span><span class="p">.</span><span class="nx">css</span><span class="p">({</span><span class="s1">&#39;border-bottom&#39;</span> <span class="o">:</span> <span class="s1">&#39;none&#39;</span><span class="p">});</span> 
-    <span class="p">}</span>
-      <span class="p">}</span>
+Unable to find image <span class="s1">&#39;hello-world:latest&#39;</span> locally
+latest: Pulling from library/hello-world
 
-      <span class="c1">//add click listener for all cells</span>
-      <span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;.prompt_container&quot;</span> <span class="p">).</span><span class="nx">dblclick</span><span class="p">(</span><span class="nx">on_click</span><span class="p">);</span>
-      <span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;.output_wrapper&quot;</span>   <span class="p">).</span><span class="nx">dblclick</span><span class="p">(</span><span class="nx">on_click</span><span class="p">);</span>
+Digest: sha256:cc15c5b292d8525effc0f89cb299f1804f3a725c8d05e158653a563f15e4f685
+Status: Downloaded newer image <span class="k">for</span> hello-world:latest
 
-<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">keyup</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">switch</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">keyCode</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="mf">72</span><span class="o">:</span>
-            <span class="c1">// Key:h </span>
-            <span class="c1">//$(&quot;#shortcut_button&quot;).click();</span>
-            <span class="c1">//var f = $(this).getElementsByClassName(&#39;code_cell&#39;);</span>
-            <span class="c1">//var strUser = f.value;</span>
-            <span class="c1">//window.alert(strUser);</span>
-            <span class="c1">//focus($(this));</span>
-            <span class="c1">//var cellselected=$(this).children().find(&quot;.cell.selected&quot;);</span>
-            <span class="c1">// Find the selected cell</span>
-            <span class="c1">//Jupyter.notebook.command_mode();</span>
-            <span class="kd">var</span> <span class="nx">cell</span> <span class="o">=</span> <span class="nx">Jupyter</span><span class="p">.</span><span class="nx">notebook</span><span class="p">.</span><span class="nx">get_selected_cell</span><span class="p">();</span>
-            <span class="kd">var</span> <span class="nx">val</span><span class="o">=</span><span class="nx">Jupyter</span><span class="p">.</span><span class="nx">notebook</span><span class="p">.</span><span class="nx">mode</span><span class="p">;</span>
-            <span class="c1">//window.alert(val);</span>
-            <span class="k">if</span><span class="p">(</span><span class="nx">val</span><span class="o">==</span><span class="s1">&#39;command&#39;</span><span class="p">){</span>
-              <span class="c1">//window.alert(&#39;toggle!&#39;);    </span>
-              <span class="nx">cell</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">children</span><span class="p">().</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;.prompt_container&quot;</span><span class="p">).</span><span class="nx">dblclick</span><span class="p">();</span>
-              <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-            <span class="p">}</span>
-            <span class="c1">//cell.children(&#39;.prompt_container&#39;).dblclick();</span>
-            <span class="c1">//window.alert(cell.focus());</span>
-            <span class="k">break</span><span class="p">;</span>
-    <span class="p">};</span>
-<span class="p">});</span>
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
 
-      <span class="c1">// listen for newly added cells and add a click listener</span>
-      <span class="kd">var</span> <span class="nx">notebook</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;#notebook-container&quot;</span> <span class="p">)[</span><span class="mf">0</span><span class="p">];</span>
-      <span class="kd">var</span> <span class="nx">observer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MutationObserver</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">mutations</span><span class="p">)</span> <span class="p">{</span>
-          <span class="nx">mutations</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">mutation</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="nx">mutation</span><span class="p">.</span><span class="nx">type</span> <span class="o">==</span> <span class="s1">&#39;childList&#39;</span><span class="p">)</span> <span class="p">{</span>
-              <span class="nx">mutation</span><span class="p">.</span><span class="nx">addedNodes</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">child</span><span class="p">)</span> <span class="p">{</span>
-                <span class="kd">var</span> <span class="nx">clickable</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">child</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;.prompt_container&quot;</span><span class="p">);</span>
-                <span class="nx">clickable</span><span class="p">.</span><span class="nx">dblclick</span><span class="p">(</span><span class="nx">on_click</span><span class="p">);</span>
-                <span class="kd">var</span> <span class="nx">clickable2</span><span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">child</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;.output_wrapper&quot;</span><span class="p">);</span>
-                <span class="nx">clickable2</span><span class="p">.</span><span class="nx">dblclick</span><span class="p">(</span><span class="nx">on_click</span><span class="p">);</span>
-                <span class="c1">//console.log(clickable);</span>
-              <span class="p">});</span>
-            <span class="p">}</span>
-          <span class="p">});</span>
-      <span class="p">});</span>
-      <span class="nx">observer</span><span class="p">.</span><span class="nx">observe</span><span class="p">(</span><span class="nx">notebook</span><span class="p">,</span> <span class="p">{</span><span class="nx">childList</span><span class="o">:</span> <span class="kc">true</span><span class="p">});</span>
+To generate this message, Docker took the following steps:
+ <span class="m">1</span>. The Docker client contacted the Docker daemon.
+ <span class="m">2</span>. The Docker daemon pulled the <span class="s2">&quot;hello-world&quot;</span> image from the Docker Hub.
+    <span class="o">(</span>amd64<span class="o">)</span>
+ <span class="m">3</span>. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ <span class="m">4</span>. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
 
-<span class="c1">// toggle all cells //</span>
-        <span class="kd">var</span> <span class="nx">flag1</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span>
-        <span class="kd">var</span> <span class="nx">handler</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-            <span class="c1">//window.alert(flag1);</span>
-            <span class="c1">//var value=$(&quot;.CodeMirror&quot;)[0].CodeMirror.options.fold;</span>
-            <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.code_cell&quot;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-                <span class="kd">var</span> <span class="nx">code</span>      <span class="o">=</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">children</span><span class="p">().</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;.CodeMirror&quot;</span><span class="p">)[</span><span class="mf">0</span><span class="p">].</span><span class="nx">CodeMirror</span><span class="p">;</span>
-                <span class="kd">var</span> <span class="nx">scroll</span>    <span class="o">=</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">children</span><span class="p">().</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;.CodeMirror-scroll&quot;</span><span class="p">);</span>
-                <span class="kd">var</span> <span class="nx">vscrollbar</span><span class="o">=</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">children</span><span class="p">().</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;.CodeMirror-vscrollbar&quot;</span><span class="p">);</span>
-                <span class="kd">var</span> <span class="nx">hscrollbar</span><span class="o">=</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">children</span><span class="p">().</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;.CodeMirror-hscrollbar&quot;</span><span class="p">);</span>
-                <span class="kd">var</span> <span class="nx">incell</span>    <span class="o">=</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">children</span><span class="p">().</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;.inner_cell&quot;</span><span class="p">);</span>
-                <span class="kd">var</span> <span class="nx">currheight</span><span class="o">=</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">children</span><span class="p">().</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;.CodeMirror&quot;</span><span class="p">).</span><span class="nx">height</span><span class="p">();</span>
-                <span class="kd">var</span> <span class="nx">slideheight</span><span class="o">=</span><span class="mf">28</span><span class="p">;</span>
-                <span class="c1">//window.alert(currheight);</span>
-                <span class="k">if</span> <span class="p">(</span><span class="nx">flag1</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">code</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">fold</span> <span class="o">&amp;&amp;</span> <span class="nx">currheight</span><span class="o">&gt;</span><span class="mf">31</span><span class="p">){</span>
-                        <span class="c1">//window.alert(code.options.fold);</span>
-                        <span class="nx">code</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">fold</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span>
-                          <span class="nx">code</span><span class="p">.</span><span class="nx">setSize</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">slideheight</span><span class="p">);</span>
-                          <span class="nx">incell</span><span class="p">.</span><span class="nx">css</span><span class="p">({</span><span class="s1">&#39;border-bottom&#39;</span> <span class="o">:</span> <span class="s1">&#39;2px dashed&#39;</span><span class="p">});</span> 
-                    <span class="c1">//flag1=false;</span>
-                   <span class="c1">//        code.setSize(null, &#39;auto&#39;);</span>
-                   <span class="c1">//   incell.css({&#39;border-bottom&#39; : &#39;none&#39;});</span>
-                    <span class="p">};</span>
-               <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-                    <span class="k">if</span><span class="p">(</span><span class="nx">code</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">fold</span><span class="p">){</span>
-                        <span class="nx">code</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">fold</span><span class="o">=</span><span class="kc">false</span><span class="p">;</span>
-                        <span class="nx">code</span><span class="p">.</span><span class="nx">setSize</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="s1">&#39;auto&#39;</span><span class="p">);</span>
-                        <span class="nx">incell</span><span class="p">.</span><span class="nx">css</span><span class="p">({</span><span class="s1">&#39;border-bottom&#39;</span> <span class="o">:</span> <span class="s1">&#39;none&#39;</span><span class="p">});</span> 
-                    <span class="p">};</span>
-                    <span class="c1">//flag1=true;</span>
-                    <span class="c1">// code.setSize(null, slideheight);</span>
-                   <span class="c1">// incell.css({&#39;border-bottom&#39; : &#39;2px dashed&#39;});</span>
-                   <span class="c1">// scroll.css({&#39;overflow-y&#39; : &#39;unset !important&#39;});</span>
-                    <span class="c1">//vscrollbar.css({&#39;overflow-y&#39;: &#39;hidden&#39;});</span>
-                    <span class="c1">//hscrollbar.css({&#39;overflow-x&#39;: &#39;hidden&#39;});</span>
-               <span class="p">}</span>
-          <span class="p">});</span>
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
 
-          <span class="c1">//  alert(&#39;this is an alert from my_extension!&#39;);</span>
-               <span class="nx">flag1</span><span class="o">=!</span><span class="nx">flag1</span><span class="p">;</span>
-             <span class="c1">//  window.alert(flag1);</span>
-        <span class="p">};</span>
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
 
-        <span class="kd">var</span> <span class="nx">action</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="nx">icon</span><span class="o">:</span> <span class="s1">&#39;fa-eye&#39;</span><span class="p">,</span> <span class="c1">// a font-awesome class used on buttons, etc</span>
-            <span class="nx">help</span>    <span class="o">:</span> <span class="s1">&#39;toggle cells&#39;</span><span class="p">,</span>
-            <span class="nx">help_index</span> <span class="o">:</span> <span class="s1">&#39;zz&#39;</span><span class="p">,</span>
-            <span class="nx">handler</span> <span class="o">:</span> <span class="nx">handler</span>
-        <span class="p">};</span>
-        <span class="kd">var</span> <span class="nx">prefix</span> <span class="o">=</span> <span class="s1">&#39;my_extension&#39;</span><span class="p">;</span>
-        <span class="kd">var</span> <span class="nx">action_name</span> <span class="o">=</span> <span class="s1">&#39;toggle cells&#39;</span><span class="p">;</span>
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
 
-        <span class="kd">var</span> <span class="nx">full_action_name</span> <span class="o">=</span> <span class="nx">Jupyter</span><span class="p">.</span><span class="nx">actions</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="nx">action</span><span class="p">,</span> <span class="nx">action_name</span><span class="p">,</span> <span class="nx">prefix</span><span class="p">);</span> <span class="c1">// returns &#39;my_extension:show-alert&#39;</span>
-        <span class="nx">Jupyter</span><span class="p">.</span><span class="nx">toolbar</span><span class="p">.</span><span class="nx">add_buttons_group</span><span class="p">([</span><span class="nx">full_action_name</span><span class="p">]);</span>
-<span class="p">});</span>
+user@pc:~$
 </pre></div>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If you want to enter a container with an Ubuntu OS and work something there, you can run with the '-it' option.</p>
+<div class="highlight"><pre><span></span>user@pc:~$ docker run -it ubuntu bash
+root@cb577cb9b9a4:/#
+</pre></div>
+<p>If you are seeing the above message (root@...), you are now in a container as the root user. You can exit from the container by just typing exit.</p>
+<div class="highlight"><pre><span></span>user@pc:~$ docker run -it ubuntu bash
+root@cb577cb9b9a4:/# <span class="nb">exit</span>
+<span class="nb">exit</span>
+user@pc:~$
 </pre></div>
 
-    </div>
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If you want to build an environment in a container for your work, it is convenient to make a Dockerfile.
+For example, you can write the following script in a Dockerfile,</p>
+<div class="highlight"><pre><span></span>user@pc:~$ vim Dockerfile
+FROM ubuntu:18.04
+RUN upt-get update <span class="o">&amp;&amp;</span> upt-get install -y vim
+RUN <span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span> &gt; sample.txt
+</pre></div>
+<p>Once you create a Dockerfile, you need to build to run as follows and would see,</p>
+<div class="highlight"><pre><span></span>user@pc:~$ docker image build -t myimage .
+<span class="o">[</span>+<span class="o">]</span> Building <span class="m">1</span>.6s <span class="o">(</span><span class="m">7</span>/7<span class="o">)</span> <span class="nv">FINISHED</span>                                                                           
+ <span class="o">=</span>&gt; <span class="o">[</span>internal<span class="o">]</span> load build definition from Dockerfile                                                 <span class="m">0</span>.0s
+ <span class="o">=</span>&gt; <span class="o">=</span>&gt; transferring dockerfile: 140B                                                                 <span class="m">0</span>.0s
+ <span class="o">=</span>&gt; <span class="o">[</span>internal<span class="o">]</span> load .dockerignore                                                                    <span class="m">0</span>.0s
+ <span class="o">=</span>&gt; <span class="o">=</span>&gt; transferring context: 2B                                                                      <span class="m">0</span>.0s
+ <span class="o">=</span>&gt; <span class="o">[</span>internal<span class="o">]</span> load metadata <span class="k">for</span> docker.io/library/ubuntu:18.04                                      <span class="m">1</span>.0s
+ <span class="o">=</span>&gt; <span class="o">[</span><span class="m">1</span>/3<span class="o">]</span> FROM docker.io/library/ubuntu:18.04@sha256:0fedbd5bd9fb72089c7bbca476949e10593cebed9b1fb9e <span class="m">0</span>.0s
+ <span class="o">=</span>&gt; CACHED <span class="o">[</span><span class="m">2</span>/3<span class="o">]</span> RUN apt-get update <span class="o">&amp;&amp;</span> apt-get install -y vim                                        <span class="m">0</span>.0s
+ <span class="o">=</span>&gt; <span class="o">[</span><span class="m">3</span>/3<span class="o">]</span> RUN <span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span> &gt;sample.txt                                                         <span class="m">0</span>.3s
+ <span class="o">=</span>&gt; exporting to image                                                                               <span class="m">0</span>.1s
+ <span class="o">=</span>&gt; <span class="o">=</span>&gt; exporting layers                                                                              <span class="m">0</span>.1s
+ <span class="o">=</span>&gt; <span class="o">=</span>&gt; writing image sha256:a941244a269e63d6e8f221ff709ed9b1b29c9a3c7684fc8bf048999530148aa5         <span class="m">0</span>.0s
+ <span class="o">=</span>&gt; <span class="o">=</span>&gt; naming to docker.io/library/myimage 
+user@pc:~$
+</pre></div>
+<p>By using the option "-t myimage", you can name a image as "myimage".</p>
+<p>Finally you can run the image "myimage",</p>
+<div class="highlight"><pre><span></span>user@pc:~$ docker run -it myimage
+root@0a37a361de6f:/# ls
+bin   dev  home  lib64  mnt  proc  run         sbin  sys  usr
+boot  etc  lib   media  opt  root  sample.txt  srv   tmp  var
+root@0a37a361de6f:/# cat sample.txt 
+hello world
+root@0a37a361de6f:/# <span class="nb">exit</span>
+<span class="nb">exit</span>
+user@pc:~$
+</pre></div>
+<p>You can check images you built,</p>
+<div class="highlight"><pre><span></span>user@pc:~$ docker images
+REPOSITORY    TAG       IMAGE ID       CREATED          SIZE
+myimage       latest    4238f49152a1   <span class="m">43</span> minutes ago   162MB
+ubuntu        latest    ba6acccedd29   <span class="m">6</span> weeks ago      <span class="m">72</span>.8MB
+hello-world   latest    feb5d9fea6a5   <span class="m">2</span> months ago     <span class="m">13</span>.3kB
+</pre></div>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here, I keep a Dockerfile which I created so that you can read NASA cdf files from CDAWEB on Jupyter notebook.</p>
+
+<pre><code>### based on anaconda3 ###
+FROM continuumio/anaconda3
+
+### install CDF ###
+ARG HOME=/home/workdir
+WORKDIR $HOME
+RUN mkdir $HOME/cdf
+RUN apt update -y &amp;&amp;\
+    apt install -y wget build-essential gcc gfortran libncurses5-dev make
+RUN wget -r -l1 -np -nd -nc https://cdaweb.gsfc.nasa.gov/pub/software/cdf/dist/cdf38_1/linux/ -A cdf38_1-dist-all.tar.gz &amp;&amp;\
+    gunzip cdf38_1-dist-all.tar.gz &amp;&amp;\
+    tar -xvf cdf38_1-dist-all.tar -C ./ &amp;&amp;\
+    cd cdf38_1-dist &amp;&amp;\
+    make OS=linux ENV=gnu CURSES=yes FORTRAN=no UCOPTIONS=-O2 SHARED=yes -j4 all &amp;&amp;\
+    make INSTALLDIR=$HOME/cdf install &amp;&amp;\
+    . $HOME/cdf/bin/definitions.B
+#   sed -i -e '68d' $HOME/cdf/bin/definitions.B &amp;&amp; \
+#   sed -i -e '67a export LD_LIBRARY_PATH=/home/workdir/cdf/lib:$LD_LIBRARY_PATH' $HOME/cdf/bin/definitions.B 
+VOLUME $HOME/cdf
+
+### install spacepy ###
+RUN pip install --upgrade pip &amp;&amp;\
+    pip install git+https://github.com/spacepy/spacepy.git
+
+### define user ID and name ###
+ARG USER_ID
+ARG GROUP_ID
+ARG USER_NAME=guest
+#RUN addgroup --gid $GROUP_ID $USER_NAME  #comment out this line for a Mac user
+RUN adduser  --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID $USER_NAME
+USER $USER_NAME
+
+### start jupyter notebook when running ###
+EXPOSE 8888
+ENTRYPOINT ["jupyter", "notebook", "--port=8888", "--no-browser", "--ip=0.0.0.0", "--allow-root"]
+CMD ["--notebook-dir=/home/workdir"]</code></pre>
+<p>Then you can build and run as follows,</p>
+<div class="highlight"><pre><span></span>user@pc:~$ docker image build -t myimage --build-arg <span class="nv">USER_ID</span><span class="o">=</span><span class="k">$(</span>id -u<span class="k">)</span> --build-arg <span class="nv">GROUP_ID</span><span class="o">=</span><span class="k">$(</span>id -g<span class="k">)</span> .
+<span class="o">[</span>+<span class="o">]</span> Building <span class="m">152</span>.6s <span class="o">(</span><span class="m">11</span>/11<span class="o">)</span> <span class="nv">FINISHED</span>                                                                       
+ <span class="o">=</span>&gt; <span class="o">[</span>internal<span class="o">]</span> load build definition from Dockerfile                                                 <span class="m">0</span>.0s
+ <span class="o">=</span>&gt; <span class="o">=</span>&gt; transferring dockerfile: <span class="m">1</span>.49kB                                                               <span class="m">0</span>.0s
+ <span class="o">=</span>&gt; <span class="o">[</span>internal<span class="o">]</span> load .dockerignore                                                                    <span class="m">0</span>.0s
+ <span class="o">=</span>&gt; <span class="o">=</span>&gt; transferring context: 2B                                                                      <span class="m">0</span>.0s
+ <span class="o">=</span>&gt; <span class="o">[</span>internal<span class="o">]</span> load metadata <span class="k">for</span> docker.io/continuumio/anaconda3:latest                              <span class="m">1</span>.3s
+ <span class="o">=</span>&gt; <span class="o">[</span><span class="m">1</span>/7<span class="o">]</span> FROM docker.io/continuumio/anaconda3@sha256:70915870bb4c3b1963252c674a49babc9334b693985855 <span class="m">0</span>.0s
+ <span class="o">=</span>&gt; <span class="o">=</span>&gt; resolve docker.io/continuumio/anaconda3@sha256:70915870bb4c3b1963252c674a49babc9334b693985855 <span class="m">0</span>.0s
+ <span class="o">=</span>&gt; CACHED <span class="o">[</span><span class="m">2</span>/7<span class="o">]</span> WORKDIR /home/workdir                                                               <span class="m">0</span>.0s
+ <span class="o">=</span>&gt; CACHED <span class="o">[</span><span class="m">3</span>/7<span class="o">]</span> RUN mkdir /home/workdir/cdf                                                         <span class="m">0</span>.0s
+ <span class="o">=</span>&gt; CACHED <span class="o">[</span><span class="m">4</span>/7<span class="o">]</span> RUN apt update  -y <span class="o">&amp;&amp;</span>     apt install -y  wget build-essential gcc gfortran libncur <span class="m">0</span>.0s
+ <span class="o">=</span>&gt; <span class="o">[</span><span class="m">5</span>/7<span class="o">]</span> RUN wget -r -l1 -np -nd -nc https://cdaweb.gsfc.nasa.gov/pub/software/cdf/dist/cdf36_4/li <span class="m">35</span>.0s
+ <span class="o">=</span>&gt; <span class="o">[</span><span class="m">6</span>/7<span class="o">]</span> RUN pip install --upgrade pip <span class="o">&amp;&amp;</span>     pip install git+https://github.com/spacepy/spacepy. <span class="m">113</span>.8s
+ <span class="o">=</span>&gt; <span class="o">[</span><span class="m">7</span>/7<span class="o">]</span> RUN adduser --disabled-password --gecos <span class="s1">&#39;&#39;</span> --uid <span class="m">501</span> --gid <span class="m">20</span> guest                        <span class="m">0</span>.9s 
+ <span class="o">=</span>&gt; exporting to image                                                                               <span class="m">1</span>.5s 
+ <span class="o">=</span>&gt; <span class="o">=</span>&gt; exporting layers                                                                              <span class="m">1</span>.5s 
+ <span class="o">=</span>&gt; <span class="o">=</span>&gt; writing image sha256:82fb43696fa967d6396dbece6b55b7407f1267d65e176dd012e2ed5b2c00f2f9         <span class="m">0</span>.0s 
+ <span class="o">=</span>&gt; <span class="o">=</span>&gt; naming to docker.io/library/myimage  
+user@pc:~$ docker run -p <span class="m">8888</span>:8888 -it --rm -v <span class="nv">$PWD</span>:/home/workdir -w /home/workdir myimage
+</pre></div>
+<p>The point here is that you will be no longer root in the container.</p>
+<p>In a jupyter notebook in the container, you may need to import spacepy as follows,</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;CDF_LIB&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cdf/lib/&#39;</span>
+<span class="kn">from</span> <span class="nn">spacepy</span> <span class="kn">import</span> <span class="n">pycdf</span>
+</pre></div>
+
+</div>
+</div>
 </div>
     </div>
   </div>
