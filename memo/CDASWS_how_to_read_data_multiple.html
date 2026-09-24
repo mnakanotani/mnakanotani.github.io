@@ -14596,7 +14596,13 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="How-to-read-data-using-the-cdasws-Python-package">How to read data using the cdasws Python package<a class="anchor-link" href="#How-to-read-data-using-the-cdasws-Python-package">&#182;</a></h1><p>reference:<br>
+<h1 id="How-to-read-data-using-the-cdasws-Python-package">How to read data using the cdasws Python package<a class="anchor-link" href="#How-to-read-data-using-the-cdasws-Python-package">&#182;</a></h1><h3 id="Workflow">Workflow<a class="anchor-link" href="#Workflow">&#182;</a></h3><ol>
+<li>Choose observatories (e.g. 'ACE')</li>
+<li>Choose instruments (e.g. 'Plasma and Solar Wind')</li>
+<li>Choose datasets (e.g. 'AC_H0_SWE')</li>
+<li>Choose variables (e.g. 'Np', 'Vp')</li>
+</ol>
+<p>reference:<br>
 <a href="https://pypi.org/project/cdasws/">https://pypi.org/project/cdasws/</a><br>
 <a href="https://berniegsfc.github.io/cdasws/jupyter/CdasWsDataRetrieval.html">https://berniegsfc.github.io/cdasws/jupyter/CdasWsDataRetrieval.html</a><br>
 <a href="https://cdaweb.gsfc.nasa.gov/WebServices/REST/jupyter/CdasWsIdlExample.html">https://cdaweb.gsfc.nasa.gov/WebServices/REST/jupyter/CdasWsIdlExample.html</a></p>
@@ -14616,7 +14622,6 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">rich.console</span> <span class="kn">import</span> <span class="n">Console</span>
 <span class="n">console</span> <span class="o">=</span> <span class="n">Console</span><span class="p">(</span><span class="n">highlight</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="c1">#,force_jupyter=False,width=999)</span>
-
 
 <span class="kn">from</span> <span class="nn">cdasws.cdasws</span> <span class="kn">import</span> <span class="n">CdasWs</span><span class="p">,</span> <span class="n">TimeInterval</span>
 <span class="kn">from</span> <span class="nn">cdasws.datarepresentation</span> <span class="kn">import</span> <span class="n">DataRepresentation</span> <span class="k">as</span> <span class="n">dr</span>
@@ -14946,12 +14951,16 @@ div.output_area pre {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### user-specified ###</span>
-<span class="n">myobservatory</span><span class="o">=</span><span class="p">[</span><span class="s1">'ACE'</span><span class="p">,</span> <span class="s1">'Wind'</span><span class="p">]</span>
-<span class="n">myinstrument</span> <span class="o">=</span><span class="p">[</span><span class="s1">'Plasma and Solar Wind'</span><span class="p">,</span> <span class="s1">'Magnetic Fields (space)'</span><span class="p">]</span>
+<span class="n">my_obs_inst</span><span class="o">=</span><span class="p">{}</span>
+<span class="n">my_obs_inst</span><span class="p">[</span><span class="s1">'ACE'</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="s1">'Plasma and Solar Wind'</span><span class="p">,</span> <span class="s1">'Magnetic Fields (space)'</span><span class="p">]</span>
+<span class="n">my_obs_inst</span><span class="p">[</span><span class="s1">'Wind'</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="s1">'Magnetic Fields (space)'</span><span class="p">]</span>
+
+<span class="c1">#myobservatory=['ACE', 'Wind']</span>
+<span class="c1">#myinstrument =['Plasma and Solar Wind', 'Magnetic Fields (space)']</span>
 </pre></div>
 </body></html>
 
@@ -14966,47 +14975,49 @@ div.output_area pre {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">all_datasets</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">obs</span> <span class="ow">in</span> <span class="n">myobservatory</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">'for </span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span><span class="p">(</span><span class="n">obs</span><span class="p">))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">'Dataset with the link -&gt; Label'</span><span class="p">)</span>
-    <span class="n">datasets</span> <span class="o">=</span> <span class="n">cdas</span><span class="o">.</span><span class="n">get_datasets</span><span class="p">(</span><span class="n">observatoryGroup</span><span class="o">=</span><span class="n">obs</span><span class="p">,</span><span class="n">instrumentType</span><span class="o">=</span><span class="n">myinstrument</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">datasets</span><span class="p">:</span>
-        <span class="n">all_datasets</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">datasets</span><span class="p">)</span>
-        
-    <span class="n">lines</span><span class="o">=</span><span class="p">[]</span>
-    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">datasets</span><span class="p">):</span>
-        <span class="n">dataset_id</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">"Id"</span><span class="p">]</span>
-        <span class="n">dataset_label</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">"Label"</span><span class="p">]</span>
-        <span class="n">dataset_note</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">'Notes'</span><span class="p">]</span>
-        <span class="c1">#dataset_note = dataset['DatasetLink']['Url']</span>
-        <span class="c1">#skt_url = f"https://cdaweb.gsfc.nasa.gov/pub/software/cdawlib/0SKELTABLES/{dataset_id}_00000000_v01.skt"</span>
-        <span class="c1">#response = requests.get(skt_url)</span>
-        <span class="c1">#skeleton_table_text = response.text</span>
-
-        <span class="c1">#doi_info = dataset["Doi"]</span>
-        <span class="c1">#</span>
-        <span class="c1">#if doi_info:</span>
-        <span class="c1">#    # Generate the landing page metadata URL</span>
-        <span class="c1">#    metadata_url = get_doi_landing_page_url(doi_info)</span>
-        <span class="c1">#else:</span>
-        <span class="c1">#    # Fallback if no DOI info is provided directly in the dataset object</span>
-        <span class="c1">#    metadata_url = f"https://nasa.gov{dataset_id}"</span>
-
-        <span class="c1">#print('\033[1;32m%s\033[0m -&gt; %s, %s' %(dataset_id, dataset_label,dataset_note))#, display_link(metadata_url, 'metadata')))</span>
-        <span class="c1">#print("'\033[1m%s\033[0m' -&gt; %s" %(dataset_id, dataset_label))#, display_link(metadata_url, 'metadata')))</span>
-        <span class="c1">#print("%s" %(dataset_note))#, display_link(metadata_url, 'metadata')))</span>
-        <span class="c1">#print('')</span>
-        <span class="c1">#display(Markdown('\033[1;32m%s\033[0m -&gt; %s' %(dataset_id, dataset_label)))#, display_link(metadata_url, 'metadata')))</span>
-        <span class="c1">#print(f'{index}. {dataset_id}, {dataset_label}')</span>
-        <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"[bold green][link=</span><span class="si">%s</span><span class="s2">]</span><span class="si">%s</span><span class="s2">[/link][/] -&gt; </span><span class="si">%s</span><span class="s2">"</span> <span class="o">%</span><span class="p">(</span><span class="n">dataset_note</span><span class="p">,</span><span class="n">dataset_id</span><span class="p">,</span><span class="n">dataset_label</span><span class="p">))</span>
-    <span class="n">console</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">),</span><span class="n">justify</span><span class="o">=</span><span class="s1">'left'</span><span class="p">,</span> <span class="n">soft_wrap</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="s1">'='</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">' '</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">obs</span> <span class="ow">in</span> <span class="n">my_obs_inst</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">inst</span> <span class="ow">in</span> <span class="n">my_obs_inst</span><span class="p">[</span><span class="n">obs</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">'Observatory: </span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span><span class="p">(</span><span class="n">obs</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">'Instrument: </span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span><span class="p">(</span><span class="n">inst</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">'Dataset with the link -&gt; Label'</span><span class="p">)</span>
+        <span class="n">datasets</span> <span class="o">=</span> <span class="n">cdas</span><span class="o">.</span><span class="n">get_datasets</span><span class="p">(</span><span class="n">observatoryGroup</span><span class="o">=</span><span class="n">obs</span><span class="p">,</span><span class="n">instrumentType</span><span class="o">=</span><span class="n">inst</span><span class="p">)</span><span class="c1">#myinstrument)</span>
+        <span class="k">if</span> <span class="n">datasets</span><span class="p">:</span>
+            <span class="n">all_datasets</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">datasets</span><span class="p">)</span>
+            
+        <span class="n">lines</span><span class="o">=</span><span class="p">[]</span>
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">datasets</span><span class="p">):</span>
+            <span class="n">dataset_id</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">"Id"</span><span class="p">]</span>
+            <span class="n">dataset_label</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">"Label"</span><span class="p">]</span>
+            <span class="n">dataset_note</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">'Notes'</span><span class="p">]</span>
+            <span class="c1">#dataset_note = dataset['DatasetLink']['Url']</span>
+            <span class="c1">#skt_url = f"https://cdaweb.gsfc.nasa.gov/pub/software/cdawlib/0SKELTABLES/{dataset_id}_00000000_v01.skt"</span>
+            <span class="c1">#response = requests.get(skt_url)</span>
+            <span class="c1">#skeleton_table_text = response.text</span>
+    
+            <span class="c1">#doi_info = dataset["Doi"]</span>
+            <span class="c1">#</span>
+            <span class="c1">#if doi_info:</span>
+            <span class="c1">#    # Generate the landing page metadata URL</span>
+            <span class="c1">#    metadata_url = get_doi_landing_page_url(doi_info)</span>
+            <span class="c1">#else:</span>
+            <span class="c1">#    # Fallback if no DOI info is provided directly in the dataset object</span>
+            <span class="c1">#    metadata_url = f"https://nasa.gov{dataset_id}"</span>
+    
+            <span class="c1">#print('\033[1;32m%s\033[0m -&gt; %s, %s' %(dataset_id, dataset_label,dataset_note))#, display_link(metadata_url, 'metadata')))</span>
+            <span class="c1">#print("'\033[1m%s\033[0m' -&gt; %s" %(dataset_id, dataset_label))#, display_link(metadata_url, 'metadata')))</span>
+            <span class="c1">#print("%s" %(dataset_note))#, display_link(metadata_url, 'metadata')))</span>
+            <span class="c1">#print('')</span>
+            <span class="c1">#display(Markdown('\033[1;32m%s\033[0m -&gt; %s' %(dataset_id, dataset_label)))#, display_link(metadata_url, 'metadata')))</span>
+            <span class="c1">#print(f'{index}. {dataset_id}, {dataset_label}')</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"[bold green][link=</span><span class="si">%s</span><span class="s2">]</span><span class="si">%s</span><span class="s2">[/link][/] -&gt; </span><span class="si">%s</span><span class="s2">"</span> <span class="o">%</span><span class="p">(</span><span class="n">dataset_note</span><span class="p">,</span><span class="n">dataset_id</span><span class="p">,</span><span class="n">dataset_label</span><span class="p">))</span>
+        <span class="n">console</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">),</span><span class="n">justify</span><span class="o">=</span><span class="s1">'left'</span><span class="p">,</span> <span class="n">soft_wrap</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+        <span class="nb">print</span><span class="p">(</span><span class="s1">'='</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">' '</span><span class="p">)</span>
 </pre></div>
 </body></html>
 
@@ -15030,7 +15041,57 @@ div.output_area pre {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>for ACE
+<pre>Observatory: ACE
+Instrument: Plasma and Solar Wind
+Dataset with the link -&gt; Label
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_AT_DEF" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_AT_DEF</span></a> -&gt; ACE Hourly RTN, GSE and J2000 GCI Attitude direction cosines - E. C. Stone (California Institute of Technology)                                                                                                                  
+<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_H0_SWE" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_H0_SWE</span></a> -&gt; ACE/SWEPAM Solar Wind Experiment 64-Second Level 2 Data - D. J. McComas (SWRI)                                                                                                                                                   
+<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_H2_SWE" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_H2_SWE</span></a> -&gt; ACE/SWEPAM Solar Wind Experiment 1-Hour Level 2 Data - D. J. McComas (SWRI)                                                                                                                                                      
+<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_H2_SWI" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_H2_SWI</span></a> -&gt; ACE/SWICS 1.1 Solar Wind 1-Hour Level 2 Data - G. Gloeckler (University of Maryland)                                                                                                                                             
+<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_H3_SW2" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_H3_SW2</span></a> -&gt; ACE/SWICS 2.0 Solar Wind 2-Hour Level 2 Data - G. Gloeckler (University of Maryland)                                                                                                                                             
+<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_H3_SWI" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_H3_SWI</span></a> -&gt; ACE/SWICS 1.1 Solar Wind 2-Hour Level 2 Data - G. Gloeckler (University of Maryland)                                                                                                                                             
+<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_H4_SWI" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_H4_SWI</span></a> -&gt; ACE/SWICS 1.1 Solar Wind 1-Day Level 2 Data - G. Gloeckler (University of Maryland)                                                                                                                                              
+<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_H5_SWI" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_H5_SWI</span></a> -&gt; ACE/SWICS 1.1 Solar Wind 2-Hour Level 2 Q-state distributions - G. Gloeckler (University of Maryland)                                                                                                                            
+<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_H6_SWI" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_H6_SWI</span></a> -&gt; ACE/SWICS Solar Wind Protons 12-min Level 2 Data - G. Gloeckler (University of Maryland)                                                                                                                                         
+<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_K0_GIFWALK" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_K0_GIFWALK</span></a> -&gt; Links to ACE KP pre-generated survey and other plots - Polar-Wind-Geotail Ground System (NASA GSFC)                                                                                                                          
+<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_K0_SWE" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_K0_SWE</span></a> -&gt; K0 - ACE Solar Wind Experiment 5-Minute Key Parameters [PRELIM] - D. J. McComas (Southwest Research Institute)                                                                                                                   
+<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_K1_SWE" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_K1_SWE</span></a> -&gt; K1 - ACE Solar Wind Experiment 1-Hour Key Parameters [PRELIM] - D. J. McComas (Southwest Research Institute)                                                                                                                     
+<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_OR_DEF" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_OR_DEF</span></a> -&gt; ACE Daily GSE and J2000 GCI Position Data - E. C. Stone (California Institute of Technology)                                                                                                                                     
+<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesO.html#OMNI2_H0_MRG1HR" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">OMNI2_H0_MRG1HR</span></a> -&gt; OMNI Combined, Definitive, Hourly IMF and Plasma Data, and Energetic Proton Fluxes, Time-Shifted to the Nose of the Earth's Bow Shock, plus Solar and Magnetic Indices - J.H. King, N. Papitashvili (ADNET, NASA GSFC)     
+<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesO.html#OMNI_COHO1HR_MERGED_MAG_PLASMA" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">OMNI_COHO1HR_MERGED_MAG_PLASMA</span></a> -&gt; OMNI Combined merged hourly magnetic field, plasma and ephermis data - J.H. King, N. Papatashvilli (AdnetSystems, NASA GSFC)                                                                                
+<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesO.html#OMNI_HRO2_1MIN" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">OMNI_HRO2_1MIN</span></a> -&gt; OMNI Combined, Definitive 1-minute IMF and Definitive Plasma Data Time-Shifted to the Nose of the Earth's Bow Shock, plus Magnetic Indices - J.H. King, N. Papatashvilli (AdnetSystems, NASA GSFC)                          
+<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesO.html#OMNI_HRO2_5MIN" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">OMNI_HRO2_5MIN</span></a> -&gt; OMNI Combined, Definitive 5-minute IMF and Definitive Plasma, and Energetic Proton Fluxes, Time-Shifted to the Nose  of the Earth's Bow Shock, plus Magnetic Indices - J.H. King, N. Papatashvilli (AdnetSystems, NASA GSFC)
+<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesO.html#OMNI_HRO_1MIN" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">OMNI_HRO_1MIN</span></a> -&gt; OMNI Combined, Definitive, 1-minute IMF and Plasma Data Time-Shifted to the Nose of the Earth's Bow Shock, plus Magnetic Indices - J.H. King, N. Papatashvilli (AdnetSystems, NASA GSFC)                                     
+<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesO.html#OMNI_HRO_5MIN" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">OMNI_HRO_5MIN</span></a> -&gt; OMNI Combined, Definitive, 5-minute IMF and Plasma, and Energetic Proton Fluxes, Time-Shifted to the Nose  of the Earth's Bow Shock, plus Magnetic Indices - J.H. King, N. Papatashvilli (AdnetSystems, NASA GSFC)           
+</pre>
+
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>====================================================================================================
+ 
+Observatory: ACE
+Instrument: Magnetic Fields (space)
 Dataset with the link -&gt; Label
 </pre>
 </div>
@@ -15046,22 +15107,12 @@ Dataset with the link -&gt; Label
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_AT_DEF" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_AT_DEF</span></a> -&gt; ACE Hourly RTN, GSE and J2000 GCI Attitude direction cosines - E. C. Stone (California Institute of Technology)                                                                                                                  
 <a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_H0_MFI" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_H0_MFI</span></a> -&gt; H0 - ACE Magnetic Field 16-Second Level 2 Data - N. Ness (Bartol Research Institute)                                                                                                                                             
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_H0_SWE" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_H0_SWE</span></a> -&gt; ACE/SWEPAM Solar Wind Experiment 64-Second Level 2 Data - D. J. McComas (SWRI)                                                                                                                                                   
 <a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_H1_MFI" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_H1_MFI</span></a> -&gt; H1 - ACE Magnetic Field 4-Minute Level 2 Data - N. Ness (Bartol Research Institute)                                                                                                                                              
 <a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_H2_MFI" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_H2_MFI</span></a> -&gt; H2 - ACE Magnetic Field 1-Hour Level 2 Data - N. Ness (Bartol Research Institute)                                                                                                                                                
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_H2_SWE" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_H2_SWE</span></a> -&gt; ACE/SWEPAM Solar Wind Experiment 1-Hour Level 2 Data - D. J. McComas (SWRI)                                                                                                                                                      
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_H2_SWI" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_H2_SWI</span></a> -&gt; ACE/SWICS 1.1 Solar Wind 1-Hour Level 2 Data - G. Gloeckler (University of Maryland)                                                                                                                                             
 <a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_H3_MFI" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_H3_MFI</span></a> -&gt; H3 - ACE Magnetic Field 1-Second Level 2 Data - N. Ness (Bartol Research Institute)                                                                                                                                              
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_H3_SW2" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_H3_SW2</span></a> -&gt; ACE/SWICS 2.0 Solar Wind 2-Hour Level 2 Data - G. Gloeckler (University of Maryland)                                                                                                                                             
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_H3_SWI" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_H3_SWI</span></a> -&gt; ACE/SWICS 1.1 Solar Wind 2-Hour Level 2 Data - G. Gloeckler (University of Maryland)                                                                                                                                             
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_H4_SWI" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_H4_SWI</span></a> -&gt; ACE/SWICS 1.1 Solar Wind 1-Day Level 2 Data - G. Gloeckler (University of Maryland)                                                                                                                                              
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_H5_SWI" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_H5_SWI</span></a> -&gt; ACE/SWICS 1.1 Solar Wind 2-Hour Level 2 Q-state distributions - G. Gloeckler (University of Maryland)                                                                                                                            
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_H6_SWI" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_H6_SWI</span></a> -&gt; ACE/SWICS Solar Wind Protons 12-min Level 2 Data - G. Gloeckler (University of Maryland)                                                                                                                                         
 <a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_K0_GIFWALK" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_K0_GIFWALK</span></a> -&gt; Links to ACE KP pre-generated survey and other plots - Polar-Wind-Geotail Ground System (NASA GSFC)                                                                                                                          
 <a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_K0_MFI" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_K0_MFI</span></a> -&gt; ACE Magnetic Field 5-Minute Key Parameters [PRELIM] - N. Ness (Bartol Research Institute)                                                                                                                                        
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_K0_SWE" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_K0_SWE</span></a> -&gt; K0 - ACE Solar Wind Experiment 5-Minute Key Parameters [PRELIM] - D. J. McComas (Southwest Research Institute)                                                                                                                   
 <a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_K1_MFI" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_K1_MFI</span></a> -&gt; ACE Magnetic Field 16-Second Key Parameters [PRELIM] - N. Ness (Bartol Research Institute)                                                                                                                                       
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_K1_SWE" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_K1_SWE</span></a> -&gt; K1 - ACE Solar Wind Experiment 1-Hour Key Parameters [PRELIM] - D. J. McComas (Southwest Research Institute)                                                                                                                     
 <a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_K2_MFI" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_K2_MFI</span></a> -&gt; K2 - ACE Magnetic Field 1-Hour Key Parameters [PRELIM] - N. Ness (Bartol Research Institute)                                                                                                                                     
 <a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_OR_DEF" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">AC_OR_DEF</span></a> -&gt; ACE Daily GSE and J2000 GCI Position Data - E. C. Stone (California Institute of Technology)                                                                                                                                     
 <a href="https://cdaweb.gsfc.nasa.gov/misc/NotesO.html#OMNI2_H0_MRG1HR" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">OMNI2_H0_MRG1HR</span></a> -&gt; OMNI Combined, Definitive, Hourly IMF and Plasma Data, and Energetic Proton Fluxes, Time-Shifted to the Nose of the Earth's Bow Shock, plus Solar and Magnetic Indices - J.H. King, N. Papitashvili (ADNET, NASA GSFC)     
@@ -15085,7 +15136,8 @@ Dataset with the link -&gt; Label
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>====================================================================================================
  
-for Wind
+Observatory: Wind
+Instrument: Magnetic Fields (space)
 Dataset with the link -&gt; Label
 </pre>
 </div>
@@ -15105,41 +15157,15 @@ Dataset with the link -&gt; Label
 <a href="https://cdaweb.gsfc.nasa.gov/misc/NotesO.html#OMNI_HRO2_5MIN" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">OMNI_HRO2_5MIN</span></a> -&gt; OMNI Combined, Definitive 5-minute IMF and Definitive Plasma, and Energetic Proton Fluxes, Time-Shifted to the Nose  of the Earth's Bow Shock, plus Magnetic Indices - J.H. King, N. Papatashvilli (AdnetSystems, NASA GSFC)
 <a href="https://cdaweb.gsfc.nasa.gov/misc/NotesO.html#OMNI_HRO_1MIN" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">OMNI_HRO_1MIN</span></a> -&gt; OMNI Combined, Definitive, 1-minute IMF and Plasma Data Time-Shifted to the Nose of the Earth's Bow Shock, plus Magnetic Indices - J.H. King, N. Papatashvilli (AdnetSystems, NASA GSFC)                                     
 <a href="https://cdaweb.gsfc.nasa.gov/misc/NotesO.html#OMNI_HRO_5MIN" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">OMNI_HRO_5MIN</span></a> -&gt; OMNI Combined, Definitive, 5-minute IMF and Plasma, and Energetic Proton Fluxes, Time-Shifted to the Nose  of the Earth's Bow Shock, plus Magnetic Indices - J.H. King, N. Papatashvilli (AdnetSystems, NASA GSFC)           
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WIND_3DP_ECHSFITS_E0-YR" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WIND_3DP_ECHSFITS_E0-YR</span></a> -&gt; Wind spacecraft, 3DP accurate electron parameters - Chadi S. Salem (University of California, Berkeley)                                                                                                            
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_ELM2_3DP" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_ELM2_3DP</span></a> -&gt; Electron Moments (ground-computed), EESA Low, Wind 3DP - R. Lin/S. Bale (UC Berkeley)                                                                                                                                          
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_EMFITS_E0_3DP" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_EMFITS_E0_3DP</span></a> -&gt; Wind spacecraft, 3DP electron moments - Stuart D. Bale (University of California, Berkeley)                                                                                                                               
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_EM_3DP" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_EM_3DP</span></a> -&gt; Electron Plasma moments (computed on-board) (NOT CORRECTED FOR S/C POTENTIAL) @ 3 second (spin) resolution (version 3), EESA LOW, Wind 3DP - R. Lin/S. Bale (UC Berkeley)                                                        
 <a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_H0_MFI" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_H0_MFI</span></a> -&gt; Wind Magnetic Fields Investigation: 3 sec, 1 min, and hourly Definitive Data. - A. Koval (UMBC, NASA/GSFC)                                                                                                                       
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_H0_SWE" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_H0_SWE</span></a> -&gt; Wind SWE (Solar Wind Experiment), 6 - 12 sec Solar Wind Electron Moments - K. Ogilvie (GSFC Code 692)                                                                                                                            
 <a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_H1_SWE" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_H1_SWE</span></a> -&gt; Wind Solar Wind Experiment, 92-sec Solar Wind Alpha and Proton Anisotropy Analysis - K. Ogilvie (NASA GSFC)                                                                                                                      
 <a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_H1_SWE_RTN" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_H1_SWE_RTN</span></a> -&gt; Solar wind proton and alpha parameters, including anisotropic temperatures, derived by non-linear fitting of the measurements and with moment techniques. Data in RTN - Bennett Maruca (University of Delaware)              
 <a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_H2_MFI" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_H2_MFI</span></a> -&gt; Wind Magnetic Fields Investigation, High-resolution Definitive Data - A. Koval (UMBC, NASA/GSFC)                                                                                                                                 
 <a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_H3-RTN_MFI" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_H3-RTN_MFI</span></a> -&gt; Wind Magnetic Fields Investigation: 3 sec, 1 min, and hourly Definitive Data (RTN). - A. Koval (UMBC, NASA/GSFC)                                                                                                             
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_H3_SWE" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_H3_SWE</span></a> -&gt; Wind Solar Wind Experiment (SWE), 9 sec solar wind electron pitch-angle distributions at 12 sec cadence - K. Ogilvie (NASA/GSFC)                                                                                                 
 <a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_H4-RTN_MFI" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_H4-RTN_MFI</span></a> -&gt; Wind Magnetic Fields Investigation, High-resolution Definitive Data (RTN) - A. Koval (UMBC, NASA/GSFC)                                                                                                                       
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_H4_SWE" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_H4_SWE</span></a> -&gt; Wind Solar Wind Experiment (SWE), 3 sec solar wind electron pitch-angle distributions at 6-12 sec cadence - K. Ogilvie (NASA/GSFC)                                                                                               
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_H5_SWE" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_H5_SWE</span></a> -&gt; Wind Solar Wind Experiment (SWE), 9 sec solar wind electron moments at 12 sec cadence - K. Ogilvie (NASA/GSFC)                                                                                                                   
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_K0_3DP" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_K0_3DP</span></a> -&gt; Wind 3-D Plasma Analyzer, Key Parameters [PRELIM] - R. Lin/S. Bale (UC Berkeley)                                                                                                                                                 
 <a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_K0_GIFWALK" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_K0_GIFWALK</span></a> -&gt; Links to Wind KP pre-generated survey and other plots - Polar-Wind-Geotail Ground System (NASA GSFC)                                                                                                                         
 <a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_K0_MFI" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_K0_MFI</span></a> -&gt; Wind Magnetic Fields Investigation, Key Parameters [PRELIM] - R. Lepping (NASA/GSFC)                                                                                                                                             
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_K0_SMS" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_K0_SMS</span></a> -&gt; Solar Wind and Suprathermal Ion Composition  Instrument, Key Parameters [PRELIM] - G. Gloeckler (U of Maryland)                                                                                                                  
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_K0_SWE" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_K0_SWE</span></a> -&gt; Wind SWE (Solar Wind Experiment), Key Parameters [PRELIM] - K. Ogilvie (NASA GSFC)                                                                                                                                               
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_K0_SWE_RTN" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_K0_SWE_RTN</span></a> -&gt; Wind Solar Wind Experiment, Key Parameters in RTN [PRELIM] - Bennett Maruca (University of Delaware)                                                                                                                         
 <a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_K1-RTN_MFI" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_K1-RTN_MFI</span></a> -&gt; Wind Magnetic Fields Investigation, Key Parameters in RTN [PRELIM] - Andriy Koval (UMBC&amp;GSFC)                                                                                                                                
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_L2-30MIN_SMS-STICS-AFM-MAGNETOSPHERE" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_L2-30MIN_SMS-STICS-AFM-MAGNETOSPHERE</span></a> -&gt; Solar Wind and Suprathermal Ion Composition  Instrument, Key Parameters - S. T. Lepri (U of Michigan)                                                                                              
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_L2-30MIN_SMS-STICS-AFM-SOLARWIND" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_L2-30MIN_SMS-STICS-AFM-SOLARWIND</span></a> -&gt; Solar Wind and Suprathermal Ion Composition  Instrument, Key Parameters - S. T. Lepri (U of Michigan)                                                                                                  
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_L2-30MIN_SMS-STICS-ERPA-MAGNETOSPHERE" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_L2-30MIN_SMS-STICS-ERPA-MAGNETOSPHERE</span></a> -&gt; Magnetosphere and Suprathermal Ion Composition  Instrument, Key Parameters - S. T. Lepri (U of Michigan)                                                                                          
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_L2-30MIN_SMS-STICS-ERPA-SOLARWIND" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_L2-30MIN_SMS-STICS-ERPA-SOLARWIND</span></a> -&gt; Solar Wind and Suprathermal Ion Composition  Instrument, Key Parameters - S. T. Lepri (U of Michigan)                                                                                                 
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_L2-3MIN_SMS-STICS-VDF-MAGNETOSPHERE" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_L2-3MIN_SMS-STICS-VDF-MAGNETOSPHERE</span></a> -&gt; Magnetosphere and Suprathermal Ion Composition  Instrument, Key Parameters - S. T. Lepri (U of Michigan)                                                                                            
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_L2-3MIN_SMS-STICS-VDF-SOLARWIND" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_L2-3MIN_SMS-STICS-VDF-SOLARWIND</span></a> -&gt; Solar Wind and Suprathermal Ion Composition Instrument, Key Parameters - S. T. Lepri (U of Michigan)                                                                                                    
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_L2_3MIN_SMS-STICS-NVT-MAGNETOSPHERE" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_L2_3MIN_SMS-STICS-NVT-MAGNETOSPHERE</span></a> -&gt; Solar Wind and Suprathermal Ion Composition  Instrument, Key Parameters - S. T. Lepri (U of Michigan)                                                                                               
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_L2_3MIN_SMS-STICS-NVT-SOLARWIND" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_L2_3MIN_SMS-STICS-NVT-SOLARWIND</span></a> -&gt; Solar Wind and Suprathermal Ion Composition  Instrument, Key Parameters - S. T. Lepri (U of Michigan)                                                                                                   
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_M0_SWE" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_M0_SWE</span></a> -&gt; Wind Solar Wind Experiment (SWE), 9 sec solar wind electron pitch-angle distribution averages - K. Ogilvie (NASA/GSFC)                                                                                                           
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_M2_SWE" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_M2_SWE</span></a> -&gt; Wind Solar Wind Experiment (SWE), 3 sec solar wind electron pitch-angle distribution averages - K. Ogilvie (NASA/GSFC)                                                                                                           
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_PLSP_3DP" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_PLSP_3DP</span></a> -&gt; Ion omnidirectional fluxes 0.4-3 keV and moments, often at ~24 second resolution, PESA Low, Wind 3DP - R. Lin/S. Bale (UC Berkeley)                                                                                            
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_PM_3DP" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_PM_3DP</span></a> -&gt;  Ion moments (computed on-board) @ 3 second (spin) resolution, PESA LOW, Wind 3DP - R. Lin/S. Bale (UC Berkeley)                                                                                                                 
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_STRAHL0_SWE" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_STRAHL0_SWE</span></a> -&gt; Wind Solar Wind Experiment (SWE) strahl detector, ~1/2 sec solar wind electron pitch-angle distributions at ~12 sec cadence - K. Ogilvie (NASA/GSFC)                                                                        
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesW.html#WI_SW-ION-DIST_SWE-FARADAY" target="_blank"><span style="color: #008000; text-decoration-color: #008000; font-weight: bold">WI_SW-ION-DIST_SWE-FARADAY</span></a> -&gt; Faraday Cup orientation and charge flux - Keith Ogilvie (NASA GSFC)                                                                                                                                             
 </pre>
 
 </div>
@@ -15168,11 +15194,11 @@ Dataset with the link -&gt; Label
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### user-specified ###</span>
-<span class="n">mydataset</span><span class="o">=</span><span class="p">[</span><span class="s1">'AC_H0_MFI'</span><span class="p">,</span><span class="s1">'AC_H0_SWE'</span><span class="p">,</span><span class="s1">'WI_H0_MFI'</span><span class="p">]</span> <span class="c1">#the order should be consistent with the list above.</span>
+<span class="n">mydataset</span><span class="o">=</span><span class="p">[</span><span class="s1">'AC_H0_MFI'</span><span class="p">,</span><span class="s1">'AC_H0_SWE'</span><span class="p">,</span><span class="s1">'WI_H0_MFI'</span><span class="p">]</span> <span class="c1">#the order should be consistent with the above list.</span>
 </pre></div>
 </body></html>
 
@@ -15198,7 +15224,7 @@ Dataset with the link -&gt; Label
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">mydois</span><span class="o">=</span><span class="p">[]</span>
@@ -15250,74 +15276,6 @@ Dataset with the link -&gt; Label
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>
-Selected dataset: AC_H0_MFI (doi:10.48322/e0dc-0h53)
-Available Period: {&#39;Start&#39;: &#39;1997-09-02T00:00:12.000Z&#39;, &#39;End&#39;: &#39;2026-08-04T23:59:59.000Z&#39;}
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-<a href="https://doi.org/10.48322/e0dc-0h53" target="_blank"><img src=https://img.shields.io/badge/DOI-10.48322/e0dc--0h53-blue/></a>
-</div>
-
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-<a href="https://heliophysicsdata.gsfc.nasa.gov/WS/hdp/1/Spase/NumericalData;DisplayData?DOI=10.48322/e0dc-0h53" target="_blank">HDP Description</a>
-</div>
-
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_H0_MFI" target="_blank">CDAWeb Notes</a>
-</div>
-
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-<b>Data Citation</b>: Smith, C. W., &amp; Ness, N. F. (2022). <i>ACE Magnetic Field 16-Second Level 2 Data</i> [Dataset]. Space Physics Data Facility; California Institute of Technology. https://doi.org/10.48322/E0DC-0H53.  Accessed on 2026-September-23.
-</div>
-
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>====================================================================================================
- 
-
 Selected dataset: AC_H0_SWE (doi:10.48322/tsfn-6v47)
 Available Period: {&#39;Start&#39;: &#39;1998-02-04T00:00:31.000Z&#39;, &#39;End&#39;: &#39;2024-07-09T23:59:13.000Z&#39;}
 </pre>
@@ -15371,7 +15329,75 @@ Available Period: {&#39;Start&#39;: &#39;1998-02-04T00:00:31.000Z&#39;, &#39;End
 
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-<b>Data Citation</b>: McComas, D., Skoug, R., Delapp, D., Elliott, H., &amp; Davis, A. (2022). <i>ACE Solar Wind Electron Proton Alpha Monitor (SWEPAM) 64-Second Level 2 Data</i> [Dataset]. Space Physics Data Facility; California Institute of Technology. https://doi.org/10.48322/TSFN-6V47.  Accessed on 2026-September-23.
+<b>Data Citation</b>: McComas, D., Skoug, R., Delapp, D., Elliott, H., &amp; Davis, A. (2022). <i>ACE Solar Wind Electron Proton Alpha Monitor (SWEPAM) 64-Second Level 2 Data</i> [Dataset]. Space Physics Data Facility; California Institute of Technology. https://doi.org/10.48322/TSFN-6V47.  Accessed on 2026-September-24.
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>====================================================================================================
+ 
+
+Selected dataset: AC_H0_MFI (doi:10.48322/e0dc-0h53)
+Available Period: {&#39;Start&#39;: &#39;1997-09-02T00:00:12.000Z&#39;, &#39;End&#39;: &#39;2026-08-04T23:59:59.000Z&#39;}
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+<a href="https://doi.org/10.48322/e0dc-0h53" target="_blank"><img src=https://img.shields.io/badge/DOI-10.48322/e0dc--0h53-blue/></a>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+<a href="https://heliophysicsdata.gsfc.nasa.gov/WS/hdp/1/Spase/NumericalData;DisplayData?DOI=10.48322/e0dc-0h53" target="_blank">HDP Description</a>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+<a href="https://cdaweb.gsfc.nasa.gov/misc/NotesA.html#AC_H0_MFI" target="_blank">CDAWeb Notes</a>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+<b>Data Citation</b>: Smith, C. W., &amp; Ness, N. F. (2022). <i>ACE Magnetic Field 16-Second Level 2 Data</i> [Dataset]. Space Physics Data Facility; California Institute of Technology. https://doi.org/10.48322/E0DC-0H53.  Accessed on 2026-September-24.
 </div>
 
 </div>
@@ -15439,7 +15465,7 @@ Available Period: {&#39;Start&#39;: &#39;1994-11-13T00:00:30.000Z&#39;, &#39;End
 
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-<b>Data Citation</b>: Koval, A., Lepping, R. P., &amp; &amp; Szabo, A. (2021). <i>Wind Magnetic Field Investigation (MFI) Composite Data</i> [Dataset]. Space Physics Data Facility. https://doi.org/10.48322/AV38-WN55.  Accessed on 2026-September-23.
+<b>Data Citation</b>: Koval, A., Lepping, R. P., &amp; &amp; Szabo, A. (2021). <i>Wind Magnetic Field Investigation (MFI) Composite Data</i> [Dataset]. Space Physics Data Facility. https://doi.org/10.48322/AV38-WN55.  Accessed on 2026-September-24.
 </div>
 
 </div>
@@ -15477,12 +15503,12 @@ Available Period: {&#39;Start&#39;: &#39;1994-11-13T00:00:30.000Z&#39;, &#39;End
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">indx</span><span class="p">,</span><span class="n">mydoi</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">mydois</span><span class="p">):</span>
     <span class="n">variables</span> <span class="o">=</span> <span class="n">cdas</span><span class="o">.</span><span class="n">get_variables</span><span class="p">(</span><span class="n">mydoi</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">'for </span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span><span class="p">(</span><span class="n">mydataset</span><span class="p">[</span><span class="n">indx</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Dataset: </span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span><span class="p">(</span><span class="n">mydataset</span><span class="p">[</span><span class="n">indx</span><span class="p">]))</span>
     
     <span class="n">search_window</span> <span class="o">=</span> <span class="n">TimeInterval</span><span class="p">(</span><span class="s2">"1900-01-01T00:00:00Z"</span><span class="p">,</span> <span class="s2">"2027-01-01T00:00:00Z"</span><span class="p">)</span>
     <span class="n">filtered_inventory</span> <span class="o">=</span> <span class="n">cdas</span><span class="o">.</span><span class="n">get_inventory</span><span class="p">(</span><span class="n">mydataset</span><span class="p">[</span><span class="n">indx</span><span class="p">],</span> <span class="n">timeInterval</span><span class="o">=</span><span class="n">search_window</span><span class="p">)</span>
@@ -15521,21 +15547,9 @@ Available Period: {&#39;Start&#39;: &#39;1994-11-13T00:00:30.000Z&#39;, &#39;End
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>for AC_H0_MFI
+<pre>Dataset: AC_H0_MFI
 Available from: <span class="ansi-green-intense-fg ansi-bold">1997-09-02 00:00:12+00:00</span> to <span class="ansi-green-intense-fg ansi-bold">2024-10-01 23:59:54+00:00</span>
 Available from: <span class="ansi-green-intense-fg ansi-bold">2024-10-02 23:59:59+00:00</span> to <span class="ansi-green-intense-fg ansi-bold">2026-08-04 23:59:59+00:00</span>
- 
-<span class="ansi-bold">&#39;Magnitude&#39;</span> -&gt; B-field magnitude
-<span class="ansi-bold">&#39;BGSEc&#39;</span> -&gt; Magnetic Field Vector in GSE Cartesian coordinates (16 sec)
-<span class="ansi-bold">&#39;BGSM&#39;</span> -&gt; Magnetic field vector in GSM coordinates (16 sec)
-<span class="ansi-bold">&#39;dBrms&#39;</span> -&gt; RMS of Magnetic Field (16 sec period)
-<span class="ansi-bold">&#39;SC_pos_GSE&#39;</span> -&gt; ACE s/c position, 3 comp. in GSE coord.
-<span class="ansi-bold">&#39;SC_pos_GSM&#39;</span> -&gt; ACE s/c position, 3 comp. in GSM coord.
-====================================================================================================
- 
-for AC_H0_SWE
-Available from: <span class="ansi-green-intense-fg ansi-bold">1998-02-04 00:00:31+00:00</span> to <span class="ansi-green-intense-fg ansi-bold">2024-04-19 23:59:27+00:00</span>
-Available from: <span class="ansi-green-intense-fg ansi-bold">2024-04-21 00:00:31+00:00</span> to <span class="ansi-green-intense-fg ansi-bold">2024-07-09 23:59:13+00:00</span>
  
 <span class="ansi-bold">&#39;Np&#39;</span> -&gt; Solar Wind Proton Number Density, scalar
 <span class="ansi-bold">&#39;Vp&#39;</span> -&gt; Solar Wind Bulk Speed
@@ -15548,7 +15562,19 @@ Available from: <span class="ansi-green-intense-fg ansi-bold">2024-04-21 00:00:3
 <span class="ansi-bold">&#39;SC_pos_GSM&#39;</span> -&gt; ACE s/c position, 3 comp. in GSM coord.
 ====================================================================================================
  
-for WI_H0_MFI
+Dataset: AC_H0_SWE
+Available from: <span class="ansi-green-intense-fg ansi-bold">1998-02-04 00:00:31+00:00</span> to <span class="ansi-green-intense-fg ansi-bold">2024-04-19 23:59:27+00:00</span>
+Available from: <span class="ansi-green-intense-fg ansi-bold">2024-04-21 00:00:31+00:00</span> to <span class="ansi-green-intense-fg ansi-bold">2024-07-09 23:59:13+00:00</span>
+ 
+<span class="ansi-bold">&#39;Magnitude&#39;</span> -&gt; B-field magnitude
+<span class="ansi-bold">&#39;BGSEc&#39;</span> -&gt; Magnetic Field Vector in GSE Cartesian coordinates (16 sec)
+<span class="ansi-bold">&#39;BGSM&#39;</span> -&gt; Magnetic field vector in GSM coordinates (16 sec)
+<span class="ansi-bold">&#39;dBrms&#39;</span> -&gt; RMS of Magnetic Field (16 sec period)
+<span class="ansi-bold">&#39;SC_pos_GSE&#39;</span> -&gt; ACE s/c position, 3 comp. in GSE coord.
+<span class="ansi-bold">&#39;SC_pos_GSM&#39;</span> -&gt; ACE s/c position, 3 comp. in GSM coord.
+====================================================================================================
+ 
+Dataset: WI_H0_MFI
 Available from: <span class="ansi-green-intense-fg ansi-bold">1994-11-13 00:00:30+00:00</span> to <span class="ansi-green-intense-fg ansi-bold">2006-11-23 23:59:30+00:00</span>
 Available from: <span class="ansi-green-intense-fg ansi-bold">2006-11-28 00:00:30+00:00</span> to <span class="ansi-green-intense-fg ansi-bold">2009-02-20 23:59:30+00:00</span>
 Available from: <span class="ansi-green-intense-fg ansi-bold">2009-02-24 00:00:30+00:00</span> to <span class="ansi-green-intense-fg ansi-bold">2014-10-27 23:59:30+00:00</span>
@@ -15618,7 +15644,7 @@ Available from: <span class="ansi-green-intense-fg ansi-bold">2026-07-26 00:00:3
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#show again the name of mydatasets for a reference </span>
@@ -15660,7 +15686,7 @@ Available from: <span class="ansi-green-intense-fg ansi-bold">2026-07-26 00:00:3
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># assign parameteprs</span>
@@ -15670,27 +15696,32 @@ Available from: <span class="ansi-green-intense-fg ansi-bold">2026-07-26 00:00:3
 <span class="n">myend_time</span>   <span class="o">=</span> <span class="p">{}</span>
 
 <span class="c1">### user-specified ###</span>
-<span class="n">myvariables</span><span class="p">[</span><span class="n">mydataset</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">=</span><span class="p">[</span><span class="s1">'BGSM'</span><span class="p">]</span>
-<span class="n">myvariables</span><span class="p">[</span><span class="n">mydataset</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">=</span><span class="p">[</span><span class="s1">'Np'</span><span class="p">,</span> <span class="s1">'Vp'</span><span class="p">,</span><span class="s1">'V_GSM'</span><span class="p">]</span>
-<span class="n">myvariables</span><span class="p">[</span><span class="n">mydataset</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span><span class="o">=</span><span class="p">[</span><span class="s1">'BGSM'</span><span class="p">]</span>
-<span class="n">mystart_time</span><span class="p">[</span><span class="n">mydataset</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="s1">'1998-02-04T00:00:00Z'</span>
-<span class="n">mystart_time</span><span class="p">[</span><span class="n">mydataset</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="s1">'1998-02-04T00:00:00Z'</span>
-<span class="n">mystart_time</span><span class="p">[</span><span class="n">mydataset</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span> <span class="o">=</span> <span class="s1">'1998-02-04T00:00:00Z'</span>
-<span class="n">myend_time</span><span class="p">[</span><span class="n">mydataset</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>   <span class="o">=</span> <span class="s1">'1999-02-04T00:00:00Z'</span>
-<span class="n">myend_time</span><span class="p">[</span><span class="n">mydataset</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>   <span class="o">=</span> <span class="s1">'1999-02-04T00:00:00Z'</span>
-<span class="n">myend_time</span><span class="p">[</span><span class="n">mydataset</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>   <span class="o">=</span> <span class="s1">'1999-02-04T00:00:00Z'</span>
+<span class="n">myvariables</span><span class="p">[</span><span class="s1">'AC_H0_MFI'</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="s1">'BGSM'</span><span class="p">]</span>
+<span class="n">myvariables</span><span class="p">[</span><span class="s1">'AC_H0_SWE'</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="s1">'Np'</span><span class="p">,</span> <span class="s1">'Vp'</span><span class="p">,</span><span class="s1">'V_GSM'</span><span class="p">]</span>
+<span class="n">myvariables</span><span class="p">[</span><span class="s1">'WI_H0_MFI'</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="s1">'BGSM'</span><span class="p">]</span>
+<span class="n">mystart_time</span><span class="p">[</span><span class="s1">'AC_H0_MFI'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'1998-02-04T00:00:00Z'</span>
+<span class="n">mystart_time</span><span class="p">[</span><span class="s1">'AC_H0_SWE'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'1998-02-04T00:00:00Z'</span>
+<span class="n">mystart_time</span><span class="p">[</span><span class="s1">'WI_H0_MFI'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'1998-02-04T00:00:00Z'</span>
+<span class="n">myend_time</span><span class="p">[</span><span class="s1">'AC_H0_MFI'</span><span class="p">]</span>   <span class="o">=</span> <span class="s1">'1999-02-04T00:00:00Z'</span>
+<span class="n">myend_time</span><span class="p">[</span><span class="s1">'AC_H0_SWE'</span><span class="p">]</span>   <span class="o">=</span> <span class="s1">'1999-02-04T00:00:00Z'</span>
+<span class="n">myend_time</span><span class="p">[</span><span class="s1">'WI_H0_MFI'</span><span class="p">]</span>   <span class="o">=</span> <span class="s1">'1999-02-04T00:00:00Z'</span>
 <span class="c1">#######################</span>
-
 
 <span class="c1"># request the data representation as Spacepy</span>
 <span class="n">data</span><span class="o">=</span><span class="p">{}</span>
 <span class="k">for</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">mydataset</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Dataset:'</span><span class="p">,</span> <span class="n">dataset</span><span class="p">)</span>
     <span class="n">status</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">dataset</span><span class="p">]</span> <span class="o">=</span> <span class="n">cdas</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">myvariables</span><span class="p">[</span><span class="n">dataset</span><span class="p">],</span> <span class="n">mystart_time</span><span class="p">[</span><span class="n">dataset</span><span class="p">],</span> <span class="n">myend_time</span><span class="p">[</span><span class="n">dataset</span><span class="p">],</span> <span class="n">dataRepresentation</span> <span class="o">=</span> <span class="n">dr</span><span class="o">.</span><span class="n">XARRAY</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">status</span><span class="p">[</span><span class="s1">'http'</span><span class="p">][</span><span class="s1">'status_code'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">'Donwload Success!'</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error! HTTP Status Code: </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">''</span><span class="p">)</span>
+    
+<span class="c1">### change the name of the first index to "time" (hope the first variable is Epoch-related).</span>
+<span class="k">for</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">mydataset</span><span class="p">:</span>
+    <span class="n">keys</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">dataset</span><span class="p">]</span><span class="o">.</span><span class="n">indexes</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="n">data</span><span class="p">[</span><span class="n">dataset</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">dataset</span><span class="p">]</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="s2">"time"</span><span class="p">})</span>
 </pre></div>
 </body></html>
 
@@ -15714,12 +15745,15 @@ Available from: <span class="ansi-green-intense-fg ansi-bold">2026-07-26 00:00:3
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>AC_H0_MFI
+<pre>Dataset: AC_H0_MFI
 Donwload Success!
-AC_H0_SWE
+
+Dataset: AC_H0_SWE
 Donwload Success!
-WI_H0_MFI
+
+Dataset: WI_H0_MFI
 Donwload Success!
+
 </pre>
 </div>
 </div>
@@ -15733,7 +15767,7 @@ Donwload Success!
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_MFI'</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
@@ -15763,13 +15797,13 @@ Donwload Success!
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>KeysView(&lt;xarray.Dataset&gt;
-Dimensions:    (Epoch: 1971004, cartesian: 3)
+Dimensions:    (time: 1971004, cartesian: 3)
 Coordinates:
-  * Epoch      (Epoch) datetime64[ns] 1998-02-04T00:00:15 ... 1999-02-03T23:5...
+  * time       (time) datetime64[ns] 1998-02-04T00:00:15 ... 1999-02-03T23:59:47
   * cartesian  (cartesian) &lt;U11 &#39;x_component&#39; &#39;y_component&#39; &#39;z_component&#39;
     metavar0   (cartesian) &lt;U8 &#39;Bx (GSM)&#39; &#39;By (GSM)&#39; &#39;Bz (GSM)&#39;
 Data variables:
-    BGSM       (Epoch, cartesian) float32 3.602 1.174 -8.85 ... -4.181 -3.728
+    BGSM       (time, cartesian) float32 3.602 1.174 -8.85 ... -4.181 -3.728
 Attributes: (12/31)
     TITLE:                       [&#39;ACE&gt; Magnetometer Parameters&#39;]
     Project:                     [&#39;ISTP&gt;International Solar-Terrestrial Physi...
@@ -15785,14 +15819,14 @@ Attributes: (12/31)
     CDAWEB_PARENTS:              [&#39;ac_h0_mfi_00000000_v01&#39;, &#39;ac_h0_mfi_199802...
     PARENTS:                     [&#39;ac_h0_mfi_00000000_v01&#39;, &#39;ac_h0_mfi_199802...)
 KeysView(&lt;xarray.Dataset&gt;
-Dimensions:   (Epoch: 492751, dim0: 3)
+Dimensions:   (time: 492751, dim0: 3)
 Coordinates:
-  * Epoch     (Epoch) datetime64[ns] 1998-02-04T00:00:31 ... 1999-02-03T23:59:47
+  * time      (time) datetime64[ns] 1998-02-04T00:00:31 ... 1999-02-03T23:59:47
 Dimensions without coordinates: dim0
 Data variables:
-    Np        (Epoch) float32 nan nan nan nan nan nan ... nan nan nan nan nan
-    Vp        (Epoch) float32 nan nan nan nan nan nan ... nan 304.6 nan nan nan
-    V_GSM     (Epoch, dim0) float32 nan nan nan nan nan ... nan nan nan nan nan
+    Np        (time) float32 nan nan nan nan nan nan ... nan nan nan nan nan nan
+    Vp        (time) float32 nan nan nan nan nan nan ... nan 304.6 nan nan nan
+    V_GSM     (time, dim0) float32 nan nan nan nan nan ... nan nan nan nan nan
     metavar0  (dim0) &lt;U8 &#39;VX (GSM)&#39; &#39;VY (GSM)&#39; &#39;VZ (GSM)&#39;
 Attributes: (12/31)
     TITLE:                       [&#39;ACE&gt; Solar Wind Parameters&#39;]
@@ -15809,13 +15843,13 @@ Attributes: (12/31)
     CDAWEB_PARENTS:              [&#39;ac_h0_swe_00000000_v01&#39;, &#39;ac_h0_swe_199802...
     PARENTS:                     [&#39;ac_h0_swe_00000000_v01&#39;, &#39;ac_h0_swe_199802...)
 KeysView(&lt;xarray.Dataset&gt;
-Dimensions:    (Epoch: 525600, cartesian: 3)
+Dimensions:    (time: 525600, cartesian: 3)
 Coordinates:
-  * Epoch      (Epoch) datetime64[ns] 1998-02-04T00:00:30 ... 1999-02-03T23:5...
+  * time       (time) datetime64[ns] 1998-02-04T00:00:30 ... 1999-02-03T23:59:30
   * cartesian  (cartesian) &lt;U11 &#39;x-component&#39; &#39;y-component&#39; &#39;z-component&#39;
     metavar0   (cartesian) &lt;U8 &#39;Bx (GSM)&#39; &#39;By (GSM)&#39; &#39;Bz (GSM)&#39;
 Data variables:
-    BGSM       (Epoch, cartesian) float32 3.536 -0.3283 -9.06 ... -6.191 -3.951
+    BGSM       (time, cartesian) float32 3.536 -0.3283 -9.06 ... -6.191 -3.951
 Attributes: (12/35)
     Project:                     [&#39;ISTP&gt;International Solar-Terrestrial Physi...
     Discipline:                  [&#39;Space Physics&gt;Heliospheric Science&#39;]
@@ -15843,7 +15877,7 @@ Attributes: (12/35)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_MFI'</span><span class="p">][</span><span class="s1">'cartesian'</span><span class="p">])</span>
@@ -15896,7 +15930,7 @@ Attributes:
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_SWE'</span><span class="p">][</span><span class="s1">'Np'</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -15937,10 +15971,10 @@ Attributes:
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_SWE'</span><span class="p">][</span><span class="s1">'Epoch'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_SWE'</span><span class="p">][</span><span class="s1">'time'</span><span class="p">])</span>
 
 <span class="c1">#plt.plot(data['AC_H0_SWE']['V_GSM'][:,0])</span>
 </pre></div>
@@ -15966,13 +16000,13 @@ Attributes:
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>&lt;xarray.DataArray &#39;Epoch&#39; (Epoch: 492751)&gt;
+<pre>&lt;xarray.DataArray &#39;time&#39; (time: 492751)&gt;
 array([&#39;1998-02-04T00:00:31.000000000&#39;, &#39;1998-02-04T00:01:35.000000000&#39;,
        &#39;1998-02-04T00:02:39.000000000&#39;, ..., &#39;1999-02-03T23:57:39.000000000&#39;,
        &#39;1999-02-03T23:58:43.000000000&#39;, &#39;1999-02-03T23:59:47.000000000&#39;],
       dtype=&#39;datetime64[ns]&#39;)
 Coordinates:
-  * Epoch    (Epoch) datetime64[ns] 1998-02-04T00:00:31 ... 1999-02-03T23:59:47
+  * time     (time) datetime64[ns] 1998-02-04T00:00:31 ... 1999-02-03T23:59:47
 Attributes:
     FIELDNAM:         Time
     VALIDMIN:         62987673600000.0
@@ -16009,37 +16043,37 @@ Attributes:
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_SWE'</span><span class="p">][</span><span class="s1">'Epoch'</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_SWE'</span><span class="p">][</span><span class="s1">'Np'</span><span class="p">][:])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_SWE'</span><span class="p">][</span><span class="s1">'time'</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_SWE'</span><span class="p">][</span><span class="s1">'Np'</span><span class="p">][:])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'proton density [cm$^{-3}$]'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="s1">'1998-02-04T00:00:00Z'</span><span class="p">,</span><span class="s1">'1998-02-10T00:00:00Z'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_SWE'</span><span class="p">][</span><span class="s1">'Epoch'</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_SWE'</span><span class="p">][</span><span class="s1">'V_GSM'</span><span class="p">][:,</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_SWE'</span><span class="p">][</span><span class="s1">'Epoch'</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_SWE'</span><span class="p">][</span><span class="s1">'V_GSM'</span><span class="p">][:,</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_SWE'</span><span class="p">][</span><span class="s1">'Epoch'</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_SWE'</span><span class="p">][</span><span class="s1">'V_GSM'</span><span class="p">][:,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_SWE'</span><span class="p">][</span><span class="s1">'time'</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_SWE'</span><span class="p">][</span><span class="s1">'V_GSM'</span><span class="p">][:,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_SWE'</span><span class="p">][</span><span class="s1">'time'</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_SWE'</span><span class="p">][</span><span class="s1">'V_GSM'</span><span class="p">][:,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_SWE'</span><span class="p">][</span><span class="s1">'time'</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_SWE'</span><span class="p">][</span><span class="s1">'V_GSM'</span><span class="p">][:,</span><span class="mi">2</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'solar wind speed [km/s]'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="s1">'1998-02-04T00:00:00Z'</span><span class="p">,</span><span class="s1">'1998-02-10T00:00:00Z'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">700</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_MFI'</span><span class="p">][</span><span class="s1">'Epoch'</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_MFI'</span><span class="p">][</span><span class="s1">'BGSM'</span><span class="p">][:,</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_MFI'</span><span class="p">][</span><span class="s1">'Epoch'</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_MFI'</span><span class="p">][</span><span class="s1">'BGSM'</span><span class="p">][:,</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_MFI'</span><span class="p">][</span><span class="s1">'Epoch'</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_MFI'</span><span class="p">][</span><span class="s1">'BGSM'</span><span class="p">][:,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_MFI'</span><span class="p">][</span><span class="s1">'time'</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_MFI'</span><span class="p">][</span><span class="s1">'BGSM'</span><span class="p">][:,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_MFI'</span><span class="p">][</span><span class="s1">'time'</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_MFI'</span><span class="p">][</span><span class="s1">'BGSM'</span><span class="p">][:,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_MFI'</span><span class="p">][</span><span class="s1">'time'</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">'AC_H0_MFI'</span><span class="p">][</span><span class="s1">'BGSM'</span><span class="p">][:,</span><span class="mi">2</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'magnetic fields [nT]'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="s1">'1998-02-04T00:00:00Z'</span><span class="p">,</span><span class="s1">'1998-02-10T00:00:00Z'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'WI_H0_MFI'</span><span class="p">][</span><span class="s1">'Epoch'</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">'WI_H0_MFI'</span><span class="p">][</span><span class="s1">'BGSM'</span><span class="p">][:,</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'WI_H0_MFI'</span><span class="p">][</span><span class="s1">'Epoch'</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">'WI_H0_MFI'</span><span class="p">][</span><span class="s1">'BGSM'</span><span class="p">][:,</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'WI_H0_MFI'</span><span class="p">][</span><span class="s1">'Epoch'</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">'WI_H0_MFI'</span><span class="p">][</span><span class="s1">'BGSM'</span><span class="p">][:,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'WI_H0_MFI'</span><span class="p">][</span><span class="s1">'time'</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">'WI_H0_MFI'</span><span class="p">][</span><span class="s1">'BGSM'</span><span class="p">][:,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'WI_H0_MFI'</span><span class="p">][</span><span class="s1">'time'</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">'WI_H0_MFI'</span><span class="p">][</span><span class="s1">'BGSM'</span><span class="p">][:,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'WI_H0_MFI'</span><span class="p">][</span><span class="s1">'time'</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">'WI_H0_MFI'</span><span class="p">][</span><span class="s1">'BGSM'</span><span class="p">][:,</span><span class="mi">2</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'magnetic fields [nT]'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="s1">'1998-02-04T00:00:00Z'</span><span class="p">,</span><span class="s1">'1998-02-10T00:00:00Z'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
@@ -16157,7 +16191,7 @@ jp-needs-light-background
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#https://angeo.copernicus.org/articles/19/1545/2001/angeo-19-1545-2001.pdf</span>
@@ -16207,7 +16241,7 @@ jp-needs-light-background
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">clear_output</span>
