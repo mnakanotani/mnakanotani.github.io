@@ -316,3 +316,49 @@ li {
 #footer a:hover {
   color: #333333;
 }
+
+
+
+.image-grid {
+  display: flex;
+  flex-wrap: wrap;       /* Allows images to wrap to the next line */
+  gap: 15px;             /* Space between images */
+}
+
+.image-grid a {
+  width: calc(25% - 15px); /* 4 columns (subtracting gap space) */
+  height: 250px;         /* Forces a uniform height for all photos */
+  min-width: 200px;      /* Prevents images from getting too small on mobile */
+  flex-grow: 1;
+}
+
+.image-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;     /* Crops the image to fit the box perfectly without stretching */
+  border-radius: 8px;    /* Optional: rounds the corners */
+}
+
+<!--
+.image-ggrid {
+  display: flex;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/*  a¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿ */
+.image-ggrid a {
+  display: block;
+  width: 100%;
+  height: 250px;
+  overflow: hidden; /* ¿¿¿¿¿¿¿¿¿ */
+  border-radius: 12px;
+}
+
+.image-ggrid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease; /* ¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿ */
+}
+-->
